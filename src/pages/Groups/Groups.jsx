@@ -51,7 +51,7 @@ const Groups = () => {
           title='Nuevo Grupo'
           onClose={() => setOpenModal(false)}
           open={openModal}
-          getNewGroups={getNewGroups}
+          dataGroups={getNewGroups}
           url={url}
         />
       </div>

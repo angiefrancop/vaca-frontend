@@ -8,6 +8,35 @@ const CardGroups = ({ id, name, color }) => {
     navigate(path);
   };
 
+  const showMessageDeleteGroup = () => {
+    let text = `Esta seguro de eliminar ${name}!`;
+    if (confirm(text) == true) {
+      deleteGroup();
+    }
+  };
+
+  const deleteGroup = () => {
+    if (!id) return;
+    const url = `http://localhost:3001/api/groups/${id}`;
+    fetch(url, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.error) {
+          alert(data.error);
+          return;
+        }
+        window.location.reload();
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
   return (
     <div
       className='card'
@@ -31,7 +60,7 @@ const CardGroups = ({ id, name, color }) => {
         </p>
         <div className='card__actions'>
           <button onClick={() => routeChange()}>Editar</button>
-          <button>Eliminar</button>
+          <button onClick={() => showMessageDeleteGroup()}>Eliminar</button>
         </div>
       </div>
     </div>

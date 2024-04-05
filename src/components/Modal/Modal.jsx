@@ -2,14 +2,11 @@ import './Modal.css';
 import { useState } from 'react';
 import PropTypes from 'prop-types';
 
-const Modal = ({ open, title, onClose, getNewGroups, url }) => {
+const Modal = ({ open, title, onClose, dataGroups, url, group, accion }) => {
   if (!open) return null;
   const colorList = ['#3498db', '#2ecc71', '#e74c3c', '#f1c40f', '#8e44ad', '#e67e22', '#1abc9c', '#d35400'];
 
-  const [datos, setDatos] = useState({
-    name: '',
-    color: ''
-  });
+  const [datos, setDatos] = useState(group || { name: '', color: '#3498db' });
 
   const [messageError, setMessageError] = useState('');
 
@@ -26,7 +23,7 @@ const Modal = ({ open, title, onClose, getNewGroups, url }) => {
     if (!validateData()) return;
 
     fetch(url, {
-      method: 'POST',
+      method: accion || 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
@@ -34,12 +31,11 @@ const Modal = ({ open, title, onClose, getNewGroups, url }) => {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
         if (data.error) {
           setMessageError(data.error);
           return;
         }
-        getNewGroups(data);
+        dataGroups(data);
         onClose();
       })
       .catch((error) => {
@@ -81,6 +77,7 @@ const Modal = ({ open, title, onClose, getNewGroups, url }) => {
                 placeholder='Nombre'
                 onChange={handleInputChange}
                 maxLength={30}
+                value={datos.name}
               />
               <div className='inputs-color'>
                 {colorList.map((color, index) => (
@@ -90,6 +87,7 @@ const Modal = ({ open, title, onClose, getNewGroups, url }) => {
                       name='color'
                       value={color}
                       id={`color-${index}`}
+                      checked={datos.color === color}
                       onChange={handleInputChange}
                     />
 
