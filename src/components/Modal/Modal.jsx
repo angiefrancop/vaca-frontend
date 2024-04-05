@@ -1,5 +1,6 @@
 import './Modal.css';
 import { useState } from 'react';
+import checkIcon from '../../assets/check-icn.svg';
 import PropTypes from 'prop-types';
 
 const Modal = ({ open, title, onClose, dataGroups, url, group, accion }) => {
@@ -94,7 +95,7 @@ const Modal = ({ open, title, onClose, dataGroups, url, group, accion }) => {
                     <label htmlFor={`color-${index}`}>
                       <span style={{ backgroundColor: color }}>
                         <img
-                          src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/242518/check-icn.svg'
+                          src={checkIcon}
                           alt='Checked Icon'
                         />
                       </span>
