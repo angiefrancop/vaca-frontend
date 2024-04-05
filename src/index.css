@@ -1,0 +1,76 @@
+@import url('https://fonts.googleapis.com/css?family=Fredoka+Sans:700');
+:root {
+  /* theme*/
+  --color-primary:#36190D;
+  --color-secondary:#FFA72F;
+  --color-black: #3A3A3A;
+  --color-error: #FF2530;
+  --color-success: #66B04C;
+
+  /*font*/
+  font-family: "Fredoka", sans-serif;
+
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #242424;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+a:hover {
+  color: #535bf2;
+}
+
+body {
+  background-color: #fff;
+  display: flex;
+  font-size: 15px;
+  margin: 0;
+  min-height: 100vh;
+  place-items: center;
+}
+
+
+.content {
+  background-color: #fff;
+  box-sizing: border-box;
+  margin: 0 1rem;
+  min-height: 100vh;
+}
+
+.content-page {
+  color: var(--color-black);
+  margin-top: 1rem;
+}
+
+
+button {
+  background-color: var(--color-primary);
+  border: 1px solid #e1e1e1;
+  border-radius: 5px;
+  color: #fff;
+  cursor: pointer;
+  font-size: 1rem;
+  padding: 0.5rem 1rem;
+  transition: all 0.3s;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    color: #213547;
+    background-color: #ffffff;
+  }
+}
