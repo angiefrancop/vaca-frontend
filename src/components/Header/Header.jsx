@@ -8,6 +8,7 @@ const Header = () => {
   const location = useLocation();
   const { pathname } = location;
   const splitLocation = pathname.split('/');
+  console.log('splitLocation--->', splitLocation);
   return (
     <div className='header'>
       <div className='logo'>

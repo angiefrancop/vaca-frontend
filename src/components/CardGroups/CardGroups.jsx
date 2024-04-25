@@ -17,7 +17,7 @@ const CardGroups = ({ id, name, color }) => {
 
   const deleteGroup = () => {
     if (!id) return;
-    const url = `http://localhost:3001/api/groups/${id}`;
+    const url = `http://localhost:3001/groups/${id}`;
     fetch(url, {
       method: 'DELETE',
       headers: {

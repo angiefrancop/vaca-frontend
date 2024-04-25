@@ -4,7 +4,7 @@ import './Groups.css';
 import Modal from '../../components/Modal/Modal';
 
 const Groups = () => {
-  const url = 'http://localhost:3001/api/groups';
+  const url = 'http://localhost:3001/groups';
   const [groups, setGroups] = useState([]);
   const [openModal, setOpenModal] = useState(false);
 

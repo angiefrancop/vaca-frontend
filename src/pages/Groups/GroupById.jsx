@@ -6,7 +6,7 @@ import Modal from '../../components/Modal/Modal';
 
 const GroupById = () => {
   let { id } = useParams();
-  const url = `http://localhost:3001/api/groups/${id}`;
+  const url = `http://localhost:3001/groups/${id}`;
   const [group, setGroup] = useState([]);
   const [openModal, setOpenModal] = useState(false);
 

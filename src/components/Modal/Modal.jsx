@@ -12,17 +12,19 @@ const Modal = ({ open, title, onClose, dataGroups, url, group, accion }) => {
   const [messageError, setMessageError] = useState('');
 
   const handleInputChange = (event) => {
+    console.log('group 1----->', group);
     setDatos({
       ...datos,
       [event.target.name]: event.target.value
     });
     setMessageError('');
+    console.log('group 2----->', group);
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
     if (!validateData()) return;
-
+    console.log('group----->', group);
     fetch(url, {
       method: accion || 'POST',
       headers: {
