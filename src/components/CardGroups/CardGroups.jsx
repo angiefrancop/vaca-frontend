@@ -1,6 +1,8 @@
 import { useNavigate } from 'react-router-dom';
 import Logo from '../../assets/layer-MC1.svg';
 import './CardGroups.css';
+import Button from '../Button/Button';
+
 const CardGroups = ({ id, name, color }) => {
   const navigate = useNavigate();
   const routeChange = () => {
@@ -59,8 +61,18 @@ const CardGroups = ({ id, name, color }) => {
           Debes: <span>$12.000</span>
         </p>
         <div className='card__actions'>
-          <button onClick={() => routeChange()}>Editar</button>
-          <button onClick={() => showMessageDeleteGroup()}>Eliminar</button>
+          <Button
+            type='button'
+            onClick={() => routeChange()}
+          >
+            Editar
+          </Button>
+          <Button
+            type='button'
+            onClick={() => showMessageDeleteGroup()}
+          >
+            Eliminar
+          </Button>
         </div>
       </div>
     </div>

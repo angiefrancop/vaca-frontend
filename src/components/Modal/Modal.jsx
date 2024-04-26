@@ -1,30 +1,28 @@
 import './Modal.css';
 import { useState } from 'react';
 import checkIcon from '../../assets/check-icn.svg';
-import PropTypes from 'prop-types';
+import Button from '../Button/Button';
 
-const Modal = ({ open, title, onClose, dataGroups, url, group, accion }) => {
+const Modal = ({ open, title, onClose, callback, url, group, accion }) => {
   if (!open) return null;
   const colorList = ['#3498db', '#2ecc71', '#e74c3c', '#f1c40f', '#8e44ad', '#e67e22', '#1abc9c', '#d35400'];
 
-  const [datos, setDatos] = useState(group || { name: '', color: '#3498db' });
+  let initialGroup = group || { name: '', color: '#3498db' };
+  const [datos, setDatos] = useState(initialGroup);
 
   const [messageError, setMessageError] = useState('');
 
   const handleInputChange = (event) => {
-    console.log('group 1----->', group);
     setDatos({
       ...datos,
       [event.target.name]: event.target.value
     });
     setMessageError('');
-    console.log('group 2----->', group);
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
     if (!validateData()) return;
-    console.log('group----->', group);
     fetch(url, {
       method: accion || 'POST',
       headers: {
@@ -38,7 +36,7 @@ const Modal = ({ open, title, onClose, dataGroups, url, group, accion }) => {
           setMessageError(data.error);
           return;
         }
-        dataGroups(data);
+        callback();
         onClose();
       })
       .catch((error) => {
@@ -105,7 +103,7 @@ const Modal = ({ open, title, onClose, dataGroups, url, group, accion }) => {
                   </div>
                 ))}
               </div>
-              <button type='submit'>Guardar</button>
+              <Button type='submit'>Guardar</Button>
               <span className='error'>{messageError}</span>
             </form>
           </div>

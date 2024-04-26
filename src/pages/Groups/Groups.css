@@ -1,19 +1,19 @@
 .groups-content {
   display: flex;
   flex-direction: column;
-
 }
+
 .groups-content button {
   display: block;
   margin-bottom: 1rem;
   margin-left: auto;
   width: fit-content;
 }
+
 .groups {
   display: flex;
   flex-wrap: wrap;
   gap: 1rem;
-
 }
 
 .group__actions {
@@ -23,43 +23,41 @@
   justify-content: flex-end;
 }
 
-.group__actions button{
+.group__actions button {
   margin: 0;
 }
 
 .group__info .group__image {
   display: flex;
   height: 100px;
-
 }
 
-.group__image div{
+.group__image div {
   border-radius: 3px;
   display: flex;
   width: 100px;
   height: 100px;
 }
 
-.group__image .group__data{
+.group__image .group__data {
   display: flex;
   width: 100%;
 }
 
-.group__image div img{
+.group__image div img {
   object-fit: contain;
   margin: auto auto;
 }
 
-.group__data{
+.group__data {
   display: flex;
   flex-direction: column;
   margin-left: 1rem;
 }
 
-.group__data button{
+.group__data button {
   display: flex;
-  margin: 1rem 0 0;
-
+  margin-top: 1rem;
 }
 
 .group__info__expenses {
@@ -70,12 +68,8 @@
   margin-top: 1rem;
 }
 
-.group__info__expenses h3{
-  font-size: 2rem;
-  color: var(--color-secondary);
-}
-
-.group__info__members h3{
+.group__info__expenses h3,
+.group__info__members h3 {
   font-size: 2rem;
   color: var(--color-secondary);
 }

@@ -3,6 +3,7 @@ import Logo from '../../assets/layer-MC1.svg';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import './Groups.css';
 import Modal from '../../components/Modal/Modal';
+import Button from '../../components/Button/Button';
 
 const GroupById = () => {
   let { id } = useParams();
@@ -32,9 +33,14 @@ const GroupById = () => {
   return (
     <div className='content-page groups-content'>
       <div className='group__actions'>
-        <button>Nuevo gasto</button>
-        <button>Nuevo amigo</button>
-        <button onClick={() => setOpenModal(true)}>Editar grupo</button>
+        <Button type='button'>Nuevo gasto</Button>
+        <Button type='button'>Nuevo amigo</Button>
+        <Button
+          type='button'
+          onClick={() => setOpenModal(true)}
+        >
+          Editar grupo
+        </Button>
       </div>
       {group && (
         <section className='group__info'>
@@ -52,7 +58,7 @@ const GroupById = () => {
               <p>
                 Debes en total: <span>$12.000</span>
               </p>
-              <button>Salir del grupo</button>
+              <Button type='button'>Salir del grupo</Button>
             </div>
           </div>
           <div className='group__info__expenses'>
@@ -90,7 +96,7 @@ const GroupById = () => {
         open={openModal}
         group={group}
         accion={'PUT'}
-        dataGroups={editGroup}
+        callback={getGroup}
         url={url}
       />
     </div>

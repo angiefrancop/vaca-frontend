@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import CardGroups from '../../components/CardGroups/CardGroups';
 import './Groups.css';
 import Modal from '../../components/Modal/Modal';
+import Button from '../../components/Button/Button';
 
 const Groups = () => {
   const url = 'http://localhost:3001/groups';
@@ -23,10 +24,6 @@ const Groups = () => {
       });
   };
 
-  const getNewGroups = (data) => {
-    setGroups(sortGroups(data));
-  };
-
   const sortGroups = (data) => {
     return data.sort((a, b) => {
       const dateA = new Date(a.date);
@@ -37,7 +34,12 @@ const Groups = () => {
 
   return (
     <div className='content-page groups-content'>
-      <button onClick={() => setOpenModal(true)}>Nuevo</button>
+      <Button
+        onClick={() => setOpenModal(true)}
+        type='button'
+      >
+        Nuevo
+      </Button>
       <div className='groups'>
         {groups.map((group) => (
           <CardGroups
@@ -51,7 +53,7 @@ const Groups = () => {
           title='Nuevo Grupo'
           onClose={() => setOpenModal(false)}
           open={openModal}
-          dataGroups={getNewGroups}
+          callback={getGroups}
           url={url}
         />
       </div>
