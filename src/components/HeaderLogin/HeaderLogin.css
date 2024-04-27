@@ -1,0 +1,22 @@
+.header-login {
+  background-color: var(--color-primary);
+  box-sizing: border-box;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 1rem 1rem 0;
+  width: 100%;
+}
+
+.header-login-logo {
+  display: flex;
+}
+
+.header-login-title {
+  color: var(--color-white);
+  font-size: 2rem;
+  font-weight: bold;
+  line-height: unset;
+  margin: 0 0 0 1rem;
+  text-wrap: nowrap;
+}

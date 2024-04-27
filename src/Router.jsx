@@ -6,7 +6,7 @@ const GroupById = React.lazy(() => import('./pages/Groups/GroupById'));
 
 const routes = [
   {
-    path: '/',
+    path: '/amigos',
     element: <Amigos />
   },
   {

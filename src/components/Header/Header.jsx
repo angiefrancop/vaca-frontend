@@ -1,4 +1,4 @@
-import Logo from '../../assets/Logo.svg';
+import Logo from '../../assets/logo.svg';
 import LogoProfile from '../../assets/logo-profile.svg';
 import './Header.css';
 
