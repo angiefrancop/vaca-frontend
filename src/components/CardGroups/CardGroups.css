@@ -1,4 +1,6 @@
 .card {
+  flex-basis: 420px;
+  min-width: 330px;
   display: flex;
   border: 1px solid #e1e1e1;
   border-radius: 5px;
@@ -56,8 +58,8 @@ h2::first-letter {
 
 @media (min-width: 1024px) {
   .card {
-    flex-basis: calc(33.3333% - 1rem);
-    flex-direction: column;
+    /* flex-basis: calc(33.3333% - 1rem);
+    flex-direction: column; */
     padding: 0;
   }
 

@@ -28,10 +28,10 @@ const Header = () => {
       />
       <nav className='nav-bar'>
         <ul>
-          <li className={splitLocation[1] === '' ? 'active' : ''}>
+          <li className={splitLocation[1] === 'friends' ? 'active' : ''}>
             <Link to='/friends'>Amigos</Link>
           </li>
-          <li className={splitLocation[1] === 'gastos' ? 'active' : ''}>
+          <li className={splitLocation[1] === 'expenses' ? 'active' : ''}>
             <Link to='/expenses'>Gastos</Link>
           </li>
           <li className={splitLocation[1] === 'groups' ? 'active' : ''}>

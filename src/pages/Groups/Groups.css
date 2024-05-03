@@ -1,12 +1,16 @@
 .groups-content {
   display: flex;
   flex-direction: column;
+
+}
+
+.groups-content > button {
+  margin-left: auto;
 }
 
 .groups-content button {
   display: block;
   margin-bottom: 1rem;
-  margin-left: auto;
   width: fit-content;
 }
 
@@ -14,6 +18,7 @@
   display: flex;
   flex-wrap: wrap;
   gap: 1rem;
+  justify-content: center;
 }
 
 .group__actions {
