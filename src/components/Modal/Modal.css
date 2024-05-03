@@ -85,8 +85,3 @@ input[type="radio"]+label span img{
 input[type="radio"]:checked + label span img{
   opacity: 1;
 }
-
-.error {
-  color: var(--color-error);
-  margin-bottom: 1rem;
-}

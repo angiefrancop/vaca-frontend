@@ -5,27 +5,30 @@ import Button from '../../components/Button/Button';
 
 const Signup = () => {
   const navigate = useNavigate();
-  const [datos, setDatos] = useState({ email: '', password: '' });
+  const [data, setData] = useState({ name: '', email: '', password: '' });
+  const [messageError, setMessageError] = useState('');
   const handleInputChange = (event) => {
-    setDatos({
-      ...datos,
+    setData({
+      ...data,
       [event.target.name]: event.target.value
     });
+    setMessageError('');
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    if (!validateData()) return;
     fetch(`${import.meta.env.VITE_URL_API}/auth/signup`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify(datos)
+      body: JSON.stringify(data)
     })
       .then((response) => response.json())
       .then((data) => {
         if (data.error) {
-          console.log(data.error);
+          setMessageError(data.error);
           return;
         }
         navigate('/');
@@ -33,6 +36,23 @@ const Signup = () => {
       .catch((error) => {
         console.log(error);
       });
+  };
+
+  const validateData = () => {
+    if (data.name.trim() === '') {
+      setMessageError('Digita un nombre para continuar');
+      return false;
+    }
+    if (data.email.trim() === '') {
+      setMessageError('Digita un email para continuar');
+      return false;
+    }
+
+    if (data.password.trim() === '') {
+      setMessageError('Digita una contraseña para continuar');
+      return false;
+    }
+    return true;
   };
 
   return (
@@ -91,6 +111,7 @@ const Signup = () => {
             onChange={handleInputChange}
             className='login-input'
           />
+          <span className='error'>{messageError}</span>
           <Button
             type='submit'
             style='primary'

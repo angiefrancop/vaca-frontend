@@ -56,6 +56,11 @@ body {
   margin-top: 1rem;
 }
 
+.error {
+  color: var(--color-error);
+  margin-bottom: 1rem;
+}
+
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;

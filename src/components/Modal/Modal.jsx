@@ -1,4 +1,5 @@
 import './Modal.css';
+import PropTypes from 'prop-types';
 import { useState } from 'react';
 import checkIcon from '../../assets/check-icn.svg';
 import Button from '../Button/Button';
@@ -8,13 +9,13 @@ const Modal = ({ open, title, onClose, callback, url, group, accion }) => {
   const colorList = ['#3498db', '#2ecc71', '#e74c3c', '#f1c40f', '#8e44ad', '#e67e22', '#1abc9c', '#d35400'];
 
   let initialGroup = group || { name: '', color: '#3498db' };
-  const [datos, setDatos] = useState(initialGroup);
+  const [data, setData] = useState(initialGroup);
 
   const [messageError, setMessageError] = useState('');
 
   const handleInputChange = (event) => {
-    setDatos({
-      ...datos,
+    setData({
+      ...data,
       [event.target.name]: event.target.value
     });
     setMessageError('');
@@ -28,7 +29,7 @@ const Modal = ({ open, title, onClose, callback, url, group, accion }) => {
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify(datos)
+      body: JSON.stringify(data)
     })
       .then((response) => response.json())
       .then((data) => {
@@ -45,12 +46,12 @@ const Modal = ({ open, title, onClose, callback, url, group, accion }) => {
   };
 
   const validateData = () => {
-    if (datos.name.trim() === '') {
+    if (data.name.trim() === '') {
       setMessageError('Elige un nombre para continuar');
       return false;
     }
 
-    if (datos.color.trim() === '') {
+    if (data.color.trim() === '') {
       setMessageError('Elige un color para continuar');
       return false;
     }
@@ -78,7 +79,7 @@ const Modal = ({ open, title, onClose, callback, url, group, accion }) => {
                 placeholder='Nombre'
                 onChange={handleInputChange}
                 maxLength={30}
-                value={datos.name}
+                value={data.name}
               />
               <div className='inputs-color'>
                 {colorList.map((color, index) => (
@@ -88,7 +89,7 @@ const Modal = ({ open, title, onClose, callback, url, group, accion }) => {
                       name='color'
                       value={color}
                       id={`color-${index}`}
-                      checked={datos.color === color}
+                      checked={data.color === color}
                       onChange={handleInputChange}
                     />
 
@@ -111,5 +112,15 @@ const Modal = ({ open, title, onClose, callback, url, group, accion }) => {
       </div>
     </div>
   );
+};
+
+Modal.propTypes = {
+  open: PropTypes.bool.isRequired,
+  title: PropTypes.string.isRequired,
+  onClose: PropTypes.func.isRequired,
+  callback: PropTypes.func.isRequired,
+  url: PropTypes.string.isRequired,
+  group: PropTypes.object,
+  accion: PropTypes.string
 };
 export default Modal;

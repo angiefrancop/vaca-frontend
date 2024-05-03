@@ -29,10 +29,10 @@ const Header = () => {
       <nav className='nav-bar'>
         <ul>
           <li className={splitLocation[1] === '' ? 'active' : ''}>
-            <Link to='/'>Amigos</Link>
+            <Link to='/friends'>Amigos</Link>
           </li>
           <li className={splitLocation[1] === 'gastos' ? 'active' : ''}>
-            <Link to='/gastos'>Gastos</Link>
+            <Link to='/expenses'>Gastos</Link>
           </li>
           <li className={splitLocation[1] === 'groups' ? 'active' : ''}>
             <Link to='/groups'>Groups</Link>
