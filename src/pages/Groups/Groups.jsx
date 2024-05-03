@@ -5,7 +5,7 @@ import Modal from '../../components/Modal/Modal';
 import Button from '../../components/Button/Button';
 
 const Groups = () => {
-  const url = 'http://localhost:3001/groups';
+  const url = `${import.meta.env.VITE_URL_API}/groups`;
   const [groups, setGroups] = useState([]);
   const [openModal, setOpenModal] = useState(false);
 

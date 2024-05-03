@@ -18,7 +18,8 @@ export default function Login() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    fetch('http://localhost:3001/auth/login', {
+    console.log('env ', import.meta.env.VITE_URL_API);
+    fetch(`${import.meta.env.VITE_URL_API}/auth/login`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

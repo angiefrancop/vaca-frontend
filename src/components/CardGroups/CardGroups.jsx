@@ -19,7 +19,7 @@ const CardGroups = ({ id, name, color }) => {
 
   const deleteGroup = () => {
     if (!id) return;
-    const url = `http://localhost:3001/groups/${id}`;
+    const url = `${import.meta.env.VITE_URL_API}/groups/${id}`;
     fetch(url, {
       method: 'DELETE',
       headers: {

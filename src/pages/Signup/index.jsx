@@ -15,7 +15,7 @@ const Signup = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    fetch('http://localhost:3001/auth/signup', {
+    fetch(`${import.meta.env.VITE_URL_API}/auth/signup`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

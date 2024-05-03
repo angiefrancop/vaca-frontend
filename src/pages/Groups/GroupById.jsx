@@ -1,13 +1,13 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import Logo from '../../assets/layer-MC1.svg';
-import { useLocation, useNavigate, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import './Groups.css';
 import Modal from '../../components/Modal/Modal';
 import Button from '../../components/Button/Button';
 
 const GroupById = () => {
   let { id } = useParams();
-  const url = `http://localhost:3001/groups/${id}`;
+  const url = `${import.meta.env.VITE_URL_API}/groups/${id}`;
   const [group, setGroup] = useState([]);
   const [openModal, setOpenModal] = useState(false);
 
