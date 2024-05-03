@@ -1,8 +1,10 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Logo from '../../assets/logo-decoration.svg';
 import Button from '../../components/Button/Button';
 
 const Signup = () => {
+  const navigate = useNavigate();
   const [datos, setDatos] = useState({ email: '', password: '' });
   const handleInputChange = (event) => {
     setDatos({
@@ -13,6 +15,24 @@ const Signup = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    fetch('http://localhost:3001/auth/signup', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(datos)
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.error) {
+          console.log(data.error);
+          return;
+        }
+        navigate('/');
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   return (
@@ -41,6 +61,7 @@ const Signup = () => {
           <input
             type='text'
             id='name'
+            name='name'
             onChange={handleInputChange}
             className='login-input'
           />
@@ -53,6 +74,7 @@ const Signup = () => {
           <input
             type='email'
             id='email'
+            name='email'
             onChange={handleInputChange}
             className='login-input'
           />
@@ -65,6 +87,7 @@ const Signup = () => {
           <input
             type='password'
             id='password'
+            name='password'
             onChange={handleInputChange}
             className='login-input'
           />
@@ -77,6 +100,7 @@ const Signup = () => {
           <Button
             type='button'
             style='secondary'
+            onClick={() => navigate('/login')}
           >
             Login
           </Button>

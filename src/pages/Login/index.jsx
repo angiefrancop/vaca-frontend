@@ -1,8 +1,13 @@
+import { useNavigate } from 'react-router-dom';
 import Button from '../../components/Button/Button';
 import Logo from '../../assets/logo-decoration.svg';
 import './login.css';
 import { useState } from 'react';
+import { useAuth } from '../../auth/AuthProvider';
+
 export default function Login() {
+  const navigate = useNavigate();
+  const auth = useAuth();
   const [datos, setDatos] = useState({ email: '', password: '' });
   const handleInputChange = (event) => {
     setDatos({
@@ -13,6 +18,24 @@ export default function Login() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    fetch('http://localhost:3001/auth/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(datos)
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.token) {
+          localStorage.setItem('token', data.token);
+          auth.saveUser(data);
+          navigate('/groups');
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
   return (
     <div className='page-login'>
@@ -26,7 +49,6 @@ export default function Login() {
           />
           <h1 className='login-title'>Iniciar Sesión</h1>
         </div>
-
         <form
           className='login-form'
           onSubmit={handleSubmit}
@@ -40,6 +62,7 @@ export default function Login() {
           <input
             type='email'
             id='email'
+            name='email'
             onChange={handleInputChange}
             className='login-input'
           />
@@ -52,6 +75,7 @@ export default function Login() {
           <input
             type='password'
             id='password'
+            name='password'
             onChange={handleInputChange}
             className='login-input'
           />
@@ -64,10 +88,12 @@ export default function Login() {
           <Button
             type='button'
             style='secondary'
+            onClick={() => navigate('/signup')}
           >
             Registrarme
           </Button>
         </form>
+        ∫
       </div>
     </div>
   );
