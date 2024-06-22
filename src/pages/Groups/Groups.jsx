@@ -3,18 +3,21 @@ import CardGroups from '../../components/CardGroups/CardGroups';
 import './Groups.css';
 import Modal from '../../components/Modal/Modal';
 import Button from '../../components/Button/Button';
+import { useAuth } from '../../auth/AuthProvider';
 
 const Groups = () => {
   const url = `${import.meta.env.VITE_URL_API}/groups`;
   const [groups, setGroups] = useState([]);
   const [openModal, setOpenModal] = useState(false);
+  const auth = useAuth();
 
   useEffect(() => {
     getGroups();
   }, []);
 
   const getGroups = async () => {
-    await fetch(url)
+    const headers = { Authorization: `Bearer ${auth.accessToken}` };
+    await fetch(url, { headers })
       .then((response) => response.json())
       .then((data) => {
         setGroups(sortGroups(data));

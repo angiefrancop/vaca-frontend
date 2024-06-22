@@ -10,6 +10,7 @@ export default function Login() {
   const auth = useAuth();
   const [data, setData] = useState({ email: '', password: '' });
   const [messageError, setMessageError] = useState('');
+
   const handleInputChange = (event) => {
     setData({
       ...data,
@@ -35,7 +36,6 @@ export default function Login() {
           return;
         }
         if (data.token) {
-          localStorage.setItem('token', data.token);
           auth.saveUser(data);
           navigate('/groups');
         }

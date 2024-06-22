@@ -1,10 +1,12 @@
 import './Modal.css';
 import PropTypes from 'prop-types';
 import { useState } from 'react';
+import { useAuth } from '../../auth/AuthProvider';
 import checkIcon from '../../assets/check-icn.svg';
 import Button from '../Button/Button';
 
 const Modal = ({ open, title, onClose, callback, url, group, accion }) => {
+  const auth = useAuth();
   if (!open) return null;
   const colorList = ['#3498db', '#2ecc71', '#e74c3c', '#f1c40f', '#8e44ad', '#e67e22', '#1abc9c', '#d35400'];
 
@@ -24,14 +26,19 @@ const Modal = ({ open, title, onClose, callback, url, group, accion }) => {
   const handleSubmit = (event) => {
     event.preventDefault();
     if (!validateData()) return;
+
     fetch(url, {
       method: accion || 'POST',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${auth.accessToken}`
       },
       body: JSON.stringify(data)
     })
-      .then((response) => response.json())
+      .then((response) => {
+        console.log(response);
+        return response.json();
+      })
       .then((data) => {
         if (data.error) {
           setMessageError(data.error);

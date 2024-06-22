@@ -2,9 +2,11 @@ import { useNavigate } from 'react-router-dom';
 import Logo from '../../assets/layer-MC1.svg';
 import './CardGroups.css';
 import Button from '../Button/Button';
+import { useAuth } from '../../auth/AuthProvider';
 
 const CardGroups = ({ id, name, color }) => {
   const navigate = useNavigate();
+  const auth = useAuth();
   const routeChange = () => {
     let path = `/groups/${id}`;
     navigate(path);
@@ -19,12 +21,11 @@ const CardGroups = ({ id, name, color }) => {
 
   const deleteGroup = () => {
     if (!id) return;
+    const headers = { Authorization: `Bearer ${auth.accessToken}` };
     const url = `${import.meta.env.VITE_URL_API}/groups/${id}`;
     fetch(url, {
       method: 'DELETE',
-      headers: {
-        'Content-Type': 'application/json'
-      }
+      headers
     })
       .then((response) => response.json())
       .then((data) => {
@@ -65,7 +66,7 @@ const CardGroups = ({ id, name, color }) => {
             type='button'
             onClick={() => routeChange()}
           >
-            Editar
+            Ver
           </Button>
           <Button
             type='button'

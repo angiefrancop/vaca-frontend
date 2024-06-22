@@ -4,8 +4,10 @@ import { useParams } from 'react-router-dom';
 import './Groups.css';
 import Modal from '../../components/Modal/Modal';
 import Button from '../../components/Button/Button';
+import { useAuth } from '../../auth/AuthProvider';
 
 const GroupById = () => {
+  const auth = useAuth();
   let { id } = useParams();
   const url = `${import.meta.env.VITE_URL_API}/groups/${id}`;
   const [group, setGroup] = useState([]);
@@ -20,7 +22,8 @@ const GroupById = () => {
   };
 
   const getGroup = async () => {
-    await fetch(url)
+    const headers = { Authorization: `Bearer ${auth.accessToken}` };
+    await fetch(url, { headers })
       .then((response) => response.json())
       .then((data) => {
         setGroup(data);
